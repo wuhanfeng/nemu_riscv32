@@ -95,7 +95,8 @@ inline void paddr_write(paddr_t addr, word_t data, int len)
 word_t vaddr_mmu_read(vaddr_t addr, int len, int type);
 void vaddr_mmu_write(vaddr_t addr, word_t data, int len);
 
-#define def_vaddr_template(bytes)                                \
+/*
+#define def_vaddr_template(bytes)                             	 \
 	word_t concat(vaddr_ifetch, bytes)(vaddr_t addr)             \
 	{                                                            \
 		int ret = isa_vaddr_check(addr, MEM_TYPE_IFETCH, bytes); \
@@ -117,9 +118,77 @@ void vaddr_mmu_write(vaddr_t addr, word_t data, int len);
 			paddr_write(addr, data, bytes);                      \
 	}
 
+
 def_vaddr_template(1)
-	def_vaddr_template(2)
-		def_vaddr_template(4)
+def_vaddr_template(2)
+def_vaddr_template(4)
 #ifdef ISA64
 			def_vaddr_template(8)
 #endif
+
+*/
+
+
+word_t vaddr_ifetch1(vaddr_t addr) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		return paddr_read(addr, 1); 
+	return 0; 
+} 
+word_t vaddr_read1(vaddr_t addr) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		return paddr_read(addr, 1); 
+	return 0; 
+} 
+void vaddr_write1(vaddr_t addr, word_t data) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		paddr_write(addr, data, 1); 
+}
+word_t vaddr_ifetch2(vaddr_t addr) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		return paddr_read(addr, 2); 
+	return 0; 
+}
+word_t vaddr_read2(vaddr_t addr) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		return paddr_read(addr, 2); 
+	return 0; 
+} 
+void vaddr_write2(vaddr_t addr, word_t data)
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		paddr_write(addr, data, 2); 
+}
+word_t vaddr_ifetch4(vaddr_t addr) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		return paddr_read(addr, 4); 
+	return 0; 
+} 
+word_t vaddr_read4(vaddr_t addr) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		return paddr_read(addr, 4); 
+	return 0; 
+} 
+void vaddr_write4(vaddr_t addr, word_t data) 
+{ 
+	int ret = (MEM_RET_OK); 
+	if (ret == MEM_RET_OK) 
+		paddr_write(addr, data, 4); 
+}
+
+
+
