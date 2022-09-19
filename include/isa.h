@@ -7,10 +7,14 @@
 #include "isa/riscv32.h"
 // The macro `__ISA__` is defined in $(CFLAGS).
 // It will be expanded as "x86" or "mips32" ...
-#define IMAGE_START concat(__ISA__, _IMAGE_START)
-#define PMEM_BASE concat(__ISA__, _PMEM_BASE)
-typedef concat(__ISA__, _CPU_state) CPU_state;
-typedef concat(__ISA__, _ISADecodeInfo) ISADecodeInfo;
+// #define IMAGE_START concat(__ISA__, _IMAGE_START)
+// #define PMEM_BASE concat(__ISA__, _PMEM_BASE)
+#define IMAGE_START riscv32_IMAGE_START
+#define PMEM_BASE riscv32_PMEM_BASE
+// typedef concat(__ISA__, _CPU_state) CPU_state;
+// typedef concat(__ISA__, _ISADecodeInfo) ISADecodeInfo;
+typedef riscv32_CPU_state CPU_state;
+typedef riscv32_ISADecodeInfo ISADecodeInfo;
 
 // monitor
 extern char isa_logo[];
