@@ -1,6 +1,6 @@
-#include <cpu/exec.h>
-#include <monitor/monitor.h>
-#include <monitor/difftest.h>
+#include "cpu/exec.h"
+#include "monitor/monitor.h"
+#include "monitor/difftest.h"
 #include "../local-include/reg.h"
 
 // void concat(exec_, name)(DecodeExecState * s)
